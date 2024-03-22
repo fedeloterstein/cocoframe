@@ -39,6 +39,10 @@ export const ActiveUser = ({user, balance = 0}: any) => {
           >
             Withdraw
           </Button>
+          <Divider />
+          <Heading>URL frame:</Heading>
+          <Text>https://hat-store-frame-indol.vercel.app/api</Text>
+
   </Stack>
   )
 }

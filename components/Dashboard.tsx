@@ -23,13 +23,8 @@ export const Dashboard = () => {
   });
 
 
-  const user = result.data;
-
-  if (Array(user)[0] !== "" && account.address) {
-    return <ActiveUser user={user} balance={balance?.data} />;
-  }
   if (!account.address) {
     return <ConnectWallet />;
   }
-  return <UserRegistrationForm data={result.data} />;
+  return <UserRegistrationForm data={result.data} balance={balance.data} />;
 };

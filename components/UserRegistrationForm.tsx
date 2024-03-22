@@ -14,10 +14,13 @@ import {
 import { useWriteContract } from "wagmi";
 import abi from "../abis/ProxyPay.json";
 import { parseEther } from "viem";
+import { ActiveUser } from "./ActiveUser";
 
-export const UserRegistrationForm = ({ data }: any) => {
-  console.log("tiene user",data?.[0] !== "");
+export const UserRegistrationForm = ({ data, balance }: any) => {
 
+  if (data?.[0] !== "") {
+    return <ActiveUser user={data} balance={balance} />;
+  }
   const { writeContract } = useWriteContract();
 
   const [formData, setFormData] = useState({
@@ -121,6 +124,7 @@ export const UserRegistrationForm = ({ data }: any) => {
             bg="white"
             border={"1px"}
             borderColor="black"
+            isDisabled={isFormDataEmpty}
             onClick={() =>
               writeContract({
                 abi: abi.abi,
