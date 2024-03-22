@@ -12,7 +12,7 @@ const fdk = new PinataFDK({
   pinata_gateway: "",
 });
 
-const CONTRACT = process.env.CONTRACT_ADDRESS as `0x` || ""
+const CONTRACT = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x` || ""
 
 const publicClient = createPublicClient({
   chain: baseSepolia,
