@@ -32,17 +32,18 @@ app.use(
   fdk.analyticsMiddleware({ frameId: "hats-store", customId: "purchased" }),
 );
 
-app.frame("/:fee/:userAddress", async (c) => {
+app.frame("/:fee/:userAddress/:img/:buttonTitle", async (c) => {
   const fee = c.req.param('fee')
   const userAddress = c.req.param('userAddress')
+  const img = c.req.param('img')
+  const buttonTitle = c.req.param('buttonTitle')
     return c.res({
       action: "/finish",
-      image:
-        "https://dweb.mypinata.cloud/ipfs/QmeC7uQZqkjmc1T6sufzbJWQpoeoYjQPxCXKUSoDrXfQFy",
+      image: img,
       imageAspectRatio: "1:1",
       intents: [
-        <Button.Transaction target="/buy/0.0025">
-          Buy for 0.0025 ETH {fee} {userAddress}
+        <Button.Transaction target={`/buy/${fee}/${userAddress}`}>
+          {buttonTitle} {fee} ETH
         </Button.Transaction>,
         <Button.Link href="https://hat-store-frame-indol.vercel.app/">Register in frames</Button.Link>
       ],
@@ -66,16 +67,16 @@ app.frame("/finish", (c) => {
 });
 
 
-app.transaction("/buy/:price", async (c) => {
+app.transaction("/buy/:price/:userAddress", async (c) => {
   
   const price = c.req.param('price')
-
+  const userAddress = c.req.param('userAddress')
   return c.contract({
     abi: abi.abi,
     // @ts-ignore
     chainId: "eip155:84532",
-    functionName: "buyHat",
-    args: [],
+    functionName: "payFee",
+    args: [userAddress],
     to: CONTRACT,
     value: parseEther(`${price}`),
   });
