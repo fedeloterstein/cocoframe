@@ -13,9 +13,9 @@ const fdk = new PinataFDK({
   pinata_gateway: "",
 });
 
-const CONTRACT = process.env.CONTRACT_ADDRESS as `0x` || ""
+const CONTRACT = (process.env.CONTRACT_ADDRESS as `0x`) || "";
 
-const account = privateKeyToAccount((process.env.PRIVATE_KEY as `0x`) || "");
+const account = "0xf3789C63EA8856F57EfF0D346Acf5a6F5acD0cDE";
 
 const publicClient = createPublicClient({
   chain: baseSepolia,
@@ -66,11 +66,11 @@ const app = new Frog({
 
 app.use(
   "/ad",
-  fdk.analyticsMiddleware({ frameId: "hats-store", customId: "ad" }),
+  fdk.analyticsMiddleware({ frameId: "hats-store", customId: "ad" })
 );
 app.use(
   "/finish",
-  fdk.analyticsMiddleware({ frameId: "hats-store", customId: "purchased" }),
+  fdk.analyticsMiddleware({ frameId: "hats-store", customId: "purchased" })
 );
 
 app.frame("/", async (c) => {
@@ -174,8 +174,7 @@ app.frame("/coupon", async (c) => {
 });
 
 app.transaction("/buy/:price", async (c) => {
-  
-  const price = c.req.param('price')
+  const price = c.req.param("price");
 
   return c.contract({
     abi: abi.abi,
