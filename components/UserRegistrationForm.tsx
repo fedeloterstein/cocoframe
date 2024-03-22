@@ -15,7 +15,11 @@ import { useWriteContract } from "wagmi";
 import abi from "../abis/ProxyPay.json";
 import { parseEther } from "viem";
 
-export const UserRegistrationForm = () => {
+export const UserRegistrationForm = ({ data }: any) => {
+  console.log("tiene user",data?.[0] !== "");
+
+  const { writeContract } = useWriteContract();
+
   const [formData, setFormData] = useState({
     fdi: "",
     img: "",
@@ -32,8 +36,6 @@ export const UserRegistrationForm = () => {
   };
 
   const isFormDataEmpty = Object.values(formData).some((value) => value === "");
-
-  const { writeContract } = useWriteContract();
 
   return (
     <Stack
@@ -119,17 +121,16 @@ export const UserRegistrationForm = () => {
             bg="white"
             border={"1px"}
             borderColor="black"
-      
             onClick={() =>
               writeContract({
                 abi: abi.abi,
                 address: "0x9527e437890f5b4a838b855a58524441be4c7bfe",
                 functionName: "registerUser",
                 args: [
-                  "_nameFid",
-                  "_img",
-                  "_buttonTitle",
-                  parseEther(`0.00001`),
+                  formData.fdi,
+                  formData.img,
+                  formData.buttonTitle,
+                  parseEther(`${formData.fee}`),
                 ],
               })
             }
