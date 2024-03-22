@@ -43,7 +43,7 @@ app.frame("/", async (c) => {
         <Button.Transaction target="/buy/0.0025">
           Buy for 0.0025 ETH
         </Button.Transaction>,
-        <Button.Redirect location="https://hat-store-frame-indol.vercel.app/">Register in frames</Button.Redirect>
+        <Button.Link href="https://hat-store-frame-indol.vercel.app/">Register in frames</Button.Link>
       ],
       title: "Pinta Hat Store",
     });
