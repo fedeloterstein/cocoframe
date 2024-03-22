@@ -68,7 +68,7 @@ app.frame("/", async (c) => {
         "https://dweb.mypinata.cloud/ipfs/QmeC7uQZqkjmc1T6sufzbJWQpoeoYjQPxCXKUSoDrXfQFy",
       imageAspectRatio: "1:1",
       intents: [
-        <Button.Transaction target="/buy/0.0005">
+        <Button.Transaction target="/buy/0.0025">
           Buy for 0.005 ETH
         </Button.Transaction>
       ],
@@ -101,7 +101,7 @@ app.transaction("/buy/:price", async (c) => {
     // @ts-ignore
     chainId: "eip155:84532",
     functionName: "buyHat",
-    args: [c.frameData?.fid],
+    args: [],
     to: CONTRACT,
     value: parseEther(`${price}`),
   });
