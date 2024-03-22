@@ -21,20 +21,6 @@ const publicClient = createPublicClient({
 
 
 
-async function remainingSupply() {
-  try {
-    const balance = await publicClient.readContract({
-      address: CONTRACT,
-      abi: abi.abi,
-      functionName: "totalSupply",
-    });
-    const readableBalance = Number(balance);
-    return readableBalance;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-}
 
 const app = new Frog({
   assetsPath: "/",
@@ -47,21 +33,7 @@ app.use(
 );
 
 app.frame("/", async (c) => {
-  const balance = await remainingSupply();
-  console.log(balance);
-  if (typeof balance === "number" && balance === 0) {
-    return c.res({
-      image:
-        "https://dweb.mypinata.cloud/ipfs/QmeeXny8775RQBZDhSppkRN15zn5nFjQUKeKAvYvdNx986",
-      imageAspectRatio: "1:1",
-      intents: [
-        <Button.Link href="https://warpcast.com/~/channel/pinata">
-          Join the Pinata Channel
-        </Button.Link>,
-      ],
-      title: "Pinta Hat Store - SOLD OUT",
-    });
-  } else {
+
     return c.res({
       action: "/finish",
       image:
@@ -69,12 +41,12 @@ app.frame("/", async (c) => {
       imageAspectRatio: "1:1",
       intents: [
         <Button.Transaction target="/buy/0.0025">
-          Buy for 0.005 ETH
+          Buy for 0.0025 ETH
         </Button.Transaction>
       ],
       title: "Pinta Hat Store",
     });
-  }
+
 });
 
 app.frame("/finish", (c) => {
