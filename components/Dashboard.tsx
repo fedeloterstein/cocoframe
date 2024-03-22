@@ -1,26 +1,14 @@
-"use client"
-import { Heading, Stack, useColorModeValue } from '@chakra-ui/react'
-import React from 'react'
-import { UserRegistrationForm } from './UserRegistrationForm'
+"use client";
+import React from "react";
+import { UserRegistrationForm } from "./UserRegistrationForm";
+import { useAccount } from "wagmi";
+import { ConnectWallet } from "./ConnectWallet";
 
 export const Dashboard = () => {
-  return (
-    <Stack
-    rounded={"sm"}
-    my={5}
-    mx={[0, 5]}
-    overflow={"hidden"}
-    bg="white"
-    border={"1px"}
-    borderColor="black"
-    boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
-    flexDirection={["column", null, "row"]}
-    p={10}
-    gap={[null, 5, 10]}
-  >
-    <Heading>Register</Heading>
+  const account = useAccount();
 
-    <UserRegistrationForm />
-  </Stack>
-  )
-}
+  if (!account.address) {
+    return <ConnectWallet />;
+  }
+  return <UserRegistrationForm />;
+};

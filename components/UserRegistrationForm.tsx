@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import {
   Container,
@@ -6,20 +7,35 @@ import {
   Input,
   Button,
   VStack,
-  useToast,
+  Heading,
+  Stack,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import { ethers } from "ethers";
 
 export const UserRegistrationForm = () => {
   const [nameFid, setNameFid] = useState("");
   const [imgRing, setImgRing] = useState("");
   const [buttonTitle, setButtonTitle] = useState("");
   const [fee, setFee] = useState("");
-  const toast = useToast();
 
   return (
+    <Stack
+    rounded={"sm"}
+    my={5}
+    mx={[0, 5]}
+    overflow={"hidden"}
+    bg="white"
+    border={"1px"}
+    borderColor="black"
+    boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
+    flexDirection={["column", null, "row"]}
+    p={10}
+    gap={[null, 5, 10]}
+    alignItems={"center"}
+  >
     <Container maxW="container.sm">
       <VStack spacing={4} align="stretch">
+        <Heading>Register your custom frame</Heading>
         <FormControl>
           <FormLabel>Name</FormLabel>
           <Input
@@ -87,5 +103,6 @@ export const UserRegistrationForm = () => {
         </Button>
       </VStack>
     </Container>
+    </Stack>
   );
 };
