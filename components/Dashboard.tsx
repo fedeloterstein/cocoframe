@@ -5,7 +5,7 @@ import { useAccount, useReadContract } from "wagmi";
 import { ConnectWallet } from "./ConnectWallet";
 import abi from "../abis/ProxyPay.json";
 
-const CONTRACT = process.env.CONTRACT_ADDRESS as `0x` || ""
+const CONTRACT = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x` || ""
 
 export const Dashboard = () => {
   const account = useAccount();

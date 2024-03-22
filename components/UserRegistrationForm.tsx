@@ -14,11 +14,16 @@ import {
 import { useWriteContract } from "wagmi";
 import abi from "../abis/ProxyPay.json";
 import { parseEther } from "viem";
+import { ActiveUser } from "./ActiveUser";
 
 
 export const UserRegistrationForm = ({ data, balance, address }: any) => {
  
-  const CONTRACT = process.env.CONTRACT_ADDRESS as `0x` || ""
+  if (data?.[0] !== "") {
+    return <ActiveUser user={data} balance={balance} address={address} />;
+  }
+
+  const CONTRACT = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x` || ""
 
   const { writeContract } = useWriteContract();
 
