@@ -16,10 +16,10 @@ import abi from "../abis/ProxyPay.json";
 import { parseEther } from "viem";
 import { ActiveUser } from "./ActiveUser";
 
-export const UserRegistrationForm = ({ data, balance }: any) => {
+export const UserRegistrationForm = ({ data, balance, address }: any) => {
 
   if (data?.[0] !== "") {
-    return <ActiveUser user={data} balance={balance} />;
+    return <ActiveUser user={data} balance={balance} address={address} />;
   }
   const { writeContract } = useWriteContract();
 

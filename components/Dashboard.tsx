@@ -26,5 +26,5 @@ export const Dashboard = () => {
   if (!account.address) {
     return <ConnectWallet />;
   }
-  return <UserRegistrationForm data={result.data} balance={balance.data} />;
+  return <UserRegistrationForm data={result.data} balance={balance.data} address={account.address} />;
 };
