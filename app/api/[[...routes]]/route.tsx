@@ -32,8 +32,9 @@ app.use(
   fdk.analyticsMiddleware({ frameId: "hats-store", customId: "purchased" }),
 );
 
-app.frame("/", async (c) => {
-
+app.frame("/:fee/:userAddress", async (c) => {
+  const fee = c.req.param('fee')
+  const userAddress = c.req.param('userAddress')
     return c.res({
       action: "/finish",
       image:
@@ -41,7 +42,7 @@ app.frame("/", async (c) => {
       imageAspectRatio: "1:1",
       intents: [
         <Button.Transaction target="/buy/0.0025">
-          Buy for 0.0025 ETH
+          Buy for 0.0025 ETH {fee} {userAddress}
         </Button.Transaction>,
         <Button.Link href="https://hat-store-frame-indol.vercel.app/">Register in frames</Button.Link>
       ],
