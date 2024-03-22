@@ -14,20 +14,19 @@ import {
 import { useWriteContract } from "wagmi";
 import abi from "../abis/ProxyPay.json";
 import { parseEther } from "viem";
-import { ActiveUser } from "./ActiveUser";
+
 
 export const UserRegistrationForm = ({ data, balance, address }: any) => {
+ 
+  const CONTRACT = process.env.CONTRACT_ADDRESS as `0x` || ""
 
-  if (data?.[0] !== "") {
-    return <ActiveUser user={data} balance={balance} address={address} />;
-  }
   const { writeContract } = useWriteContract();
 
   const [formData, setFormData] = useState({
-    fdi: "",
-    img: "",
-    buttonTitle: "",
-    fee: "",
+    fdi: "3",
+    img: "QmeC7uQZqkjmc1T6sufzbJWQpoeoYjQPxCXKUSoDrXfQFy",
+    buttonTitle: "DONATE",
+    fee: "0.00001",
   });
 
   const handleInputChange = (e: any) => {
@@ -124,11 +123,10 @@ export const UserRegistrationForm = ({ data, balance, address }: any) => {
             bg="white"
             border={"1px"}
             borderColor="black"
-            isDisabled={isFormDataEmpty}
             onClick={() =>
               writeContract({
                 abi: abi.abi,
-                address: "0x9527e437890f5b4a838b855a58524441be4c7bfe",
+                address: CONTRACT,
                 functionName: "registerUser",
                 args: [
                   formData.fdi,

@@ -23,6 +23,7 @@ export const Dashboard = () => {
     functionName: "getBalance"
   });
 
+console.log(result?.data);
 
   if (!account.address) {
     return <ConnectWallet />;
