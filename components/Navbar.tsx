@@ -1,10 +1,17 @@
 "use client";
-import { Button, HStack, Heading, useColorModeValue } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  Heading,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 
 import React from "react";
 import { useAccount } from "wagmi";
+import { FaUsers, FaGithub, FaSearch } from "react-icons/fa";
 
 export const Navbar = () => {
   const account = useAccount();
@@ -23,10 +30,36 @@ export const Navbar = () => {
           boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 cyan")}
           p={1}
         >
-          Shareme 🥳
+          CocoFrame 🥥
         </Heading>
       </Link>
-      {account.address && <ConnectButton />}
+  
+      <HStack      flexDirection={["column", null, "row"]}>
+      <Link href={"/explore"}>
+        <HStack>
+          <FaUsers />
+          <Text>Explore Users</Text>
+        </HStack>
+      </Link>
+        <Link href={"https://github.com/"} target="_blank">
+          <HStack>
+            <FaGithub />
+            <Text>Github</Text>
+          </HStack>
+        </Link>
+        <Link
+          href={
+            "https://base-sepolia.blockscout.com/address/0xFAF361A1282239315cBC654839AE41D93ef859Cb"
+          }
+          target="_blank"
+        >
+          <HStack>
+            <FaSearch />
+            <Text>Contract</Text>
+          </HStack>
+        </Link>
+        {account.address && <ConnectButton />}
+      </HStack>
     </HStack>
   );
 };

@@ -93,18 +93,6 @@ export const ProfileDetails = ({ data }: any) => {
           >
             Support Base
           </Button>
-          <Button
-            rounded={"sm"}
-            my={5}
-            mx={[0, 5]}
-            overflow={"hidden"}
-            bg="white"
-            border={"1px"}
-            borderColor="black"
-            boxShadow={useColorModeValue("6px 6px 0 red", "6px 6px 0 cyan")}
-          >
-            Support Optimism
-          </Button>
         </HStack>
         <Text alignSelf={"center"}>Total raised: 23 eth</Text>
       </Stack>

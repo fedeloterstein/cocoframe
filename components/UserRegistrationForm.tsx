@@ -15,23 +15,22 @@ import { useWriteContract } from "wagmi";
 import abi from "../abis/ProxyPay.json";
 import { parseEther } from "viem";
 import { ActiveUser } from "./ActiveUser";
-
+import { CardImages } from "./CardImages";
 
 export const UserRegistrationForm = ({ data, balance, address }: any) => {
- 
   if (data?.[0] !== "") {
     return <ActiveUser user={data} balance={balance} address={address} />;
   }
 
-  const CONTRACT = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x` || ""
+  const CONTRACT = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x`) || "";
 
   const { writeContract } = useWriteContract();
 
   const [formData, setFormData] = useState({
-    fdi: "3",
-    img: "QmeC7uQZqkjmc1T6sufzbJWQpoeoYjQPxCXKUSoDrXfQFy",
-    buttonTitle: "DONATE",
-    fee: "0.00001",
+    fdi: "",
+    img: "",
+    buttonTitle: "",
+    fee: "",
   });
 
   const handleInputChange = (e: any) => {
@@ -39,6 +38,14 @@ export const UserRegistrationForm = ({ data, balance, address }: any) => {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleImgChange = (img: any) => {
+
+    setFormData({
+      ...formData,
+      ['img']: img,
     });
   };
 
@@ -78,19 +85,8 @@ export const UserRegistrationForm = ({ data, balance, address }: any) => {
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Image Ring</FormLabel>
-            <Input
-              type="text"
-              name="img"
-              value={formData.img}
-              onChange={handleInputChange}
-              required
-              rounded={"sm"}
-              overflow={"hidden"}
-              bg="white"
-              border={"1px"}
-              borderColor="black"
-            />
+            <FormLabel>IPFS image</FormLabel>
+            <CardImages handleImgChange={handleImgChange} selected={formData.img}/>
           </FormControl>
           <FormControl>
             <FormLabel>Button Title</FormLabel>
@@ -128,6 +124,7 @@ export const UserRegistrationForm = ({ data, balance, address }: any) => {
             bg="white"
             border={"1px"}
             borderColor="black"
+            isDisabled={isFormDataEmpty}
             onClick={() =>
               writeContract({
                 abi: abi.abi,

@@ -1,5 +1,5 @@
 "use client"
-import { Button, Heading, Stack, useColorModeValue } from '@chakra-ui/react'
+import { Button, Heading, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import React from 'react'
 
@@ -8,7 +8,9 @@ export const ConnectWallet = () => {
     const { openConnectModal } = useConnectModal();
   return (
     <Stack align={'center'} pt={20}>
-    <Heading>Connect your wallet to get started</Heading>
+
+    <Heading textAlign={'center'}>Create, customize and share Frames without code 🌈</Heading>
+    <Text textAlign={'center'}>Connect your wallet to get started</Text>
     <Button
       rounded={"sm"}
       my={5}
