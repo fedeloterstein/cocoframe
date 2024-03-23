@@ -4,6 +4,7 @@ import { UserRegistrationForm } from "./UserRegistrationForm";
 import { useAccount, useReadContract } from "wagmi";
 import { ConnectWallet } from "./ConnectWallet";
 import abi from "../abis/ProxyPay.json";
+import { formatEther } from "viem";
 
 const CONTRACT = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x` || ""
 
@@ -23,7 +24,6 @@ export const Dashboard = () => {
     functionName: "getBalance"
   });
 
-console.log(result?.data);
 
   if (!account.address) {
     return <ConnectWallet />;
