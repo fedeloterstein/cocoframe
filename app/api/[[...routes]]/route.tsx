@@ -39,7 +39,7 @@ app.frame("/:fee/:userAddress/:img/:buttonTitle", async (c) => {
   const buttonTitle = c.req.param('buttonTitle')
     return c.res({
       action: "/finish",
-      image: `https://dweb.mypinata.cloud/ipfs/${img}`,
+      image: `https://aquamarine-many-porcupine-944.mypinata.cloud/ipfs/${img}`,
       imageAspectRatio: "1:1",
       intents: [
         <Button.Transaction target={`/buy/${fee}/${userAddress}`}>

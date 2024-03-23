@@ -55,7 +55,7 @@ export const ActiveUser = ({ user, balance = 0, address }: any) => {
           })
         }
       >
-        Withdraw
+        Withdraw in Base
       </Button>
       <Divider />
       <Heading>URL frame:</Heading>
