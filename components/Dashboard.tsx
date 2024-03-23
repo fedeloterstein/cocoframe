@@ -4,9 +4,8 @@ import { UserRegistrationForm } from "./UserRegistrationForm";
 import { useAccount, useReadContract } from "wagmi";
 import { ConnectWallet } from "./ConnectWallet";
 import abi from "../abis/ProxyPay.json";
-import { formatEther } from "viem";
 
-const CONTRACT = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x` || ""
+const CONTRACT = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x`) || "";
 
 export const Dashboard = () => {
   const account = useAccount();
@@ -21,12 +20,18 @@ export const Dashboard = () => {
   const balance = useReadContract({
     abi: abi.abi,
     address: CONTRACT,
-    functionName: "getBalance"
+    functionName: "balances",
+    args: [account.address],
   });
-
 
   if (!account.address) {
     return <ConnectWallet />;
   }
-  return <UserRegistrationForm data={result.data} balance={balance.data} address={account.address} />;
+  return (
+    <UserRegistrationForm
+      data={result.data}
+      balance={balance.data}
+      address={account.address}
+    />
+  );
 };

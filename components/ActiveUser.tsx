@@ -9,8 +9,13 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { formatEther } from "viem";
+import abi from "../abis/ProxyPay.json";
+import { useWriteContract } from "wagmi";
+
+const CONTRACT = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x`) || "";
 
 export const ActiveUser = ({ user, balance = 0, address }: any) => {
+  const { writeContract } = useWriteContract();
   return (
     <Stack
       rounded={"sm"}
@@ -42,6 +47,13 @@ export const ActiveUser = ({ user, balance = 0, address }: any) => {
         borderColor="black"
         boxShadow={useColorModeValue("6px 6px 0 blue", "6px 6px 0 cyan")}
         isDisabled={balance <= 0}
+        onClick={() =>
+          writeContract({
+            abi: abi.abi,
+            address: CONTRACT,
+            functionName: "withdraw",
+          })
+        }
       >
         Withdraw
       </Button>
