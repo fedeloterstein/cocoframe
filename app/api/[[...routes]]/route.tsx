@@ -45,7 +45,7 @@ app.frame("/:fee/:userAddress/:img/:buttonTitle", async (c) => {
         <Button.Transaction target={`/buy/${fee}/${userAddress}`}>
           {buttonTitle} {fee} ETH
         </Button.Transaction>,
-        <Button.Link href="https://hat-store-frame-indol.vercel.app/">Register in CocoFrame 🥥</Button.Link>
+        <Button.Link href="https://cocoframe.vercel.app/">Register in CocoFrame 🥥</Button.Link>
       ],
       title: "Pinta Hat Store",
     });
