@@ -67,7 +67,7 @@ export const ActiveUser = ({ user, balance = 0, address }: any) => {
             </Button>
             <Divider />
             <Heading>URL frame:</Heading>
-            <Code colorScheme='red' children={`https://hat-store-frame-indol.vercel.app/api/${formatEther(
+            <Code colorScheme='red' children={`https://cocoframe.vercel.app/api/${formatEther(
                 user?.[3]
               )}/${address}/${user?.[1]}/${user?.[1]}`} />
     
