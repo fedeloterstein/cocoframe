@@ -69,7 +69,7 @@ export const ActiveUser = ({ user, balance = 0, address }: any) => {
             <Heading>URL frame:</Heading>
             <Code colorScheme='red' children={`https://cocoframe.vercel.app/api/${formatEther(
                 user?.[3]
-              )}/${address}/${user?.[1]}/${user?.[1]}`} />
+              )}/${address}/${user?.[1]}/${user?.[2]}`} />
     
         
           </Stack>
